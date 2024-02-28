@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="34" android:compileSdkVersionCodename="14" coreApp="true" package="org.codeaurora.ims" platformBuildVersionCode="34" platformBuildVersionName="14">
-    <uses-sdk android:targetSdkVersion="33" />
     <protected-broadcast android:name="org.codeaurora.VOIP_VOPS_SSAC_STATUS"/>
     <protected-broadcast android:name="com.android.internal.intent.action.ACTION_FORBIDDEN_NO_SERVICE_AUTHORIZATION"/>
     <protected-broadcast android:name="com.qti.phone.action.ACTION_DISABLE_CIWLAN_NOTIFICATION"/>
