@@ -11157,8 +11157,6 @@
 
     const/4 v5, 0x6
 
-    invoke-virtual {v3, v4, v5, v1}, Lorg/codeaurora/ims/ImsSenderRxr;->synchronizeMessage(Ljava/lang/String;II)V
-
     goto/16 :goto_3
 
     .line 470
