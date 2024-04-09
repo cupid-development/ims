@@ -49,6 +49,10 @@
 
 .field private static final LOOPBACK_MODE_WIDTH:I = 0xb0
 
+.field private static final MAX_HEIGHT:I = 0x500
+
+.field private static final MAX_WIDTH:I = 0x2d0
+
 .field public static final MEDIA_EVENT:I = 0x0
 
 .field public static final PEER_RESOLUTION_CHANGE_EVT:I = 0x6
@@ -157,26 +161,26 @@
 
     sput-boolean v0, Lcom/qualcomm/ims/vt/ImsMedia;->mInitCalledFlag:Z
 
-    .line 211
+    .line 214
     const-string v0, "imsmedia_jni"
 
     invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
 
-    .line 212
+    .line 215
     return-void
 .end method
 
 .method private constructor <init>()V
     .locals 1
 
-    .line 152
+    .line 155
     invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
 
     move-result-object v0
 
     invoke-direct {p0, v0}, Lcom/qualcomm/ims/vt/ImsMedia;-><init>(Landroid/os/Looper;)V
 
-    .line 153
+    .line 156
     return-void
 .end method
 
@@ -184,96 +188,96 @@
     .locals 3
     .param p1, "looper"    # Landroid/os/Looper;
 
-    .line 156
+    .line 159
     invoke-direct {p0, p1}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
 
-    .line 108
+    .line 111
     const/16 v0, 0xf0
 
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedHeight:I
 
-    .line 109
+    .line 112
     const/16 v1, 0x140
 
     iput v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedWidth:I
 
-    .line 110
+    .line 113
     const/4 v2, 0x2
 
     iput v2, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mUIOrientationMode:I
 
-    .line 111
+    .line 114
     const/16 v2, 0x14
 
     iput v2, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedFps:I
 
-    .line 112
+    .line 115
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayWidth:I
 
-    .line 113
+    .line 116
     iput v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayHeight:I
 
-    .line 115
+    .line 118
     iput v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mPeerHeight:I
 
-    .line 116
+    .line 119
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mPeerWidth:I
 
-    .line 117
+    .line 120
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mVideoQualityLevel:I
 
-    .line 120
+    .line 123
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mShouldCacheMediaEvents:Z
 
-    .line 121
+    .line 124
     new-instance v1, Ljava/util/concurrent/CopyOnWriteArrayList;
 
     invoke-direct {v1}, Ljava/util/concurrent/CopyOnWriteArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mCachedMediaEvents:Ljava/util/List;
 
-    .line 123
+    .line 126
     iput-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mIsMediaLoopback:Z
 
-    .line 124
+    .line 127
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mScreenShareStatus:I
 
-    .line 125
+    .line 128
     iput-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mIsParamReady:Z
 
-    .line 126
+    .line 129
     const/4 v1, 0x0
 
     iput-object v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSurface:Landroid/view/Surface;
 
-    .line 127
+    .line 130
     iput-object v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mRecordingSurface:Landroid/view/Surface;
 
-    .line 128
+    .line 131
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mArStatus:I
 
-    .line 131
+    .line 134
     new-instance v0, Ljava/util/concurrent/CopyOnWriteArrayList;
 
     invoke-direct {v0}, Ljava/util/concurrent/CopyOnWriteArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaStateListeners:Ljava/util/List;
 
-    .line 133
+    .line 136
     new-instance v0, Ljava/util/concurrent/CopyOnWriteArrayList;
 
     invoke-direct {v0}, Ljava/util/concurrent/CopyOnWriteArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mCameraListener:Ljava/util/concurrent/CopyOnWriteArrayList;
 
-    .line 157
+    .line 160
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->initializemIsMediaLoopback()V
 
-    .line 158
+    .line 161
     return-void
 .end method
 
@@ -282,7 +286,7 @@
     .param p1, "width"    # I
     .param p2, "height"    # I
 
-    .line 415
+    .line 418
     int-to-double v0, p1
 
     iget v2, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedWidth:I
@@ -303,28 +307,28 @@
 
     div-double/2addr v2, v4
 
-    .line 416
+    .line 419
     invoke-static {v2, v3}, Ljava/lang/Math;->ceil(D)D
 
     move-result-wide v2
 
-    .line 415
+    .line 418
     invoke-static {v0, v1, v2, v3}, Ljava/lang/Math;->max(DD)D
 
     move-result-wide v0
 
     double-to-int v0, v0
 
-    .line 417
+    .line 420
     .local v0, "scalingFactor":I
     const/16 v1, 0x8
 
     if-le v0, v1, :cond_0
 
-    .line 418
+    .line 421
     const/16 v0, 0x8
 
-    .line 420
+    .line 423
     :cond_0
     iget v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedWidth:I
 
@@ -332,14 +336,36 @@
 
     iput v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayWidth:I
 
-    .line 421
-    iget v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedHeight:I
+    .line 424
+    iget v2, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedHeight:I
 
-    mul-int/2addr v1, v0
+    mul-int/2addr v2, v0
 
-    iput v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayHeight:I
+    iput v2, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayHeight:I
 
-    .line 422
+    .line 426
+    const/16 v3, 0x500
+
+    const/16 v4, 0x2d0
+
+    if-ge v1, v4, :cond_1
+
+    if-lt v2, v3, :cond_2
+
+    .line 427
+    :cond_1
+    const-string v1, "calculateSharedDisplayParams exceed max resolution and reset to default"
+
+    invoke-static {v1}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
+
+    .line 428
+    iput v4, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayWidth:I
+
+    .line 429
+    iput v3, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayHeight:I
+
+    .line 431
+    :cond_2
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -374,56 +400,56 @@
 
     invoke-static {v1}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 424
+    .line 433
     return-void
 .end method
 
 .method private clearMediaEventCache()V
     .locals 1
 
-    .line 315
+    .line 318
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mShouldCacheMediaEvents:Z
 
-    .line 316
+    .line 319
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mCachedMediaEvents:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 317
+    .line 320
     return-void
 .end method
 
 .method private doOnCachedMediaEvent()V
     .locals 6
 
-    .line 295
+    .line 298
     const-string v0, "doOnCachedMediaEvent: scheduling the cache"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 296
+    .line 299
     sget-boolean v0, Lcom/qualcomm/ims/vt/ImsMedia;->mInitCalledFlag:Z
 
     if-nez v0, :cond_0
 
-    .line 297
+    .line 300
     const-string v0, "VT lib deinitialized. Do not process cached events"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->logw(Ljava/lang/String;)V
 
-    .line 298
+    .line 301
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->clearMediaEventCache()V
 
-    .line 299
+    .line 302
     return-void
 
-    .line 302
+    .line 305
     :cond_0
     monitor-enter p0
 
-    .line 303
+    .line 306
     :try_start_0
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mCachedMediaEvents:Ljava/util/List;
 
@@ -444,7 +470,7 @@
 
     check-cast v1, Landroid/util/Pair;
 
-    .line 304
+    .line 307
     .local v1, "event":Landroid/util/Pair;
     iget-object v2, v1, Landroid/util/Pair;->first:Ljava/lang/Object;
 
@@ -454,7 +480,7 @@
 
     move-result v2
 
-    .line 305
+    .line 308
     .local v2, "eventId":I
     iget-object v3, v1, Landroid/util/Pair;->second:Ljava/lang/Object;
 
@@ -464,7 +490,7 @@
 
     move-result v3
 
-    .line 306
+    .line 309
     .local v3, "mediaId":I
     new-instance v4, Ljava/lang/StringBuilder;
 
@@ -496,26 +522,26 @@
 
     invoke-static {v4}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 308
+    .line 311
     invoke-direct {p0, v2, v3}, Lcom/qualcomm/ims/vt/ImsMedia;->doOnMediaEvent(II)V
 
-    .line 309
+    .line 312
     .end local v1    # "event":Landroid/util/Pair;
     .end local v2    # "eventId":I
     .end local v3    # "mediaId":I
     goto :goto_0
 
-    .line 310
+    .line 313
     :cond_1
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->clearMediaEventCache()V
 
-    .line 311
+    .line 314
     monitor-exit p0
 
-    .line 312
+    .line 315
     return-void
 
-    .line 311
+    .line 314
     :catchall_0
     move-exception v0
 
@@ -531,12 +557,12 @@
     .param p1, "eventId"    # I
     .param p2, "mediaId"    # I
 
-    .line 638
+    .line 647
     const/4 v0, 0x1
 
     packed-switch p1, :pswitch_data_0
 
-    .line 739
+    .line 748
     :pswitch_0
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -560,27 +586,27 @@
 
     goto/16 :goto_4
 
-    .line 654
+    .line 663
     :pswitch_1
     const-string v1, "Received DEVICE_READY_EVENT."
 
     invoke-static {v1}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 655
+    .line 664
     iget v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mScreenShareStatus:I
 
     const-string v2, "mRecordingSurface = "
 
     if-ne v1, v0, :cond_0
 
-    .line 656
+    .line 665
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeGetRecordingSurface()Landroid/view/Surface;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mRecordingSurface:Landroid/view/Surface;
 
-    .line 657
+    .line 666
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -601,12 +627,12 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 658
+    .line 667
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaListener:Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;
 
     if-eqz v0, :cond_a
 
-    .line 659
+    .line 668
     iget-object v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mRecordingSurface:Landroid/view/Surface;
 
     iget v2, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayWidth:I
@@ -617,20 +643,20 @@
 
     goto/16 :goto_4
 
-    .line 662
+    .line 671
     :cond_0
     iget v3, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mArStatus:I
 
     if-ne v3, v0, :cond_1
 
-    .line 663
+    .line 672
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeGetRecordingSurface()Landroid/view/Surface;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mRecordingSurface:Landroid/view/Surface;
 
-    .line 664
+    .line 673
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -651,12 +677,12 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 665
+    .line 674
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaListener:Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;
 
     if-eqz v0, :cond_a
 
-    .line 666
+    .line 675
     iget-object v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mRecordingSurface:Landroid/view/Surface;
 
     iget v2, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedWidth:I
@@ -667,38 +693,38 @@
 
     goto/16 :goto_4
 
-    .line 669
+    .line 678
     :cond_1
     if-eqz v1, :cond_2
 
     if-nez v3, :cond_a
 
-    .line 672
+    .line 681
     :cond_2
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaListener:Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;
 
     if-eqz v0, :cond_3
 
-    .line 673
+    .line 682
     const/4 v1, 0x0
 
     const/4 v2, -0x1
 
     invoke-interface {v0, p2, v1, v2, v2}, Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;->onRecordingSurfaceChanged(ILandroid/view/Surface;II)V
 
-    .line 676
+    .line 685
     :cond_3
     invoke-direct {p0, p2}, Lcom/qualcomm/ims/vt/ImsMedia;->onCameraConfigChanged(I)V
 
     goto/16 :goto_4
 
-    .line 730
+    .line 739
     :pswitch_2
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeGetRecorderFrameRate()I
 
     move-result v0
 
-    .line 731
+    .line 740
     .local v0, "rate":I
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -720,10 +746,10 @@
 
     invoke-static {v1}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 732
+    .line 741
     if-lez v0, :cond_a
 
-    .line 733
+    .line 742
     iget-object v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mCameraListener:Ljava/util/concurrent/CopyOnWriteArrayList;
 
     invoke-virtual {v1}, Ljava/util/concurrent/CopyOnWriteArrayList;->iterator()Ljava/util/Iterator;
@@ -743,25 +769,25 @@
 
     check-cast v2, Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
 
-    .line 734
+    .line 743
     .local v2, "listener":Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
     invoke-interface {v2, p2, v0}, Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;->onUpdateRecorderFrameRate(II)V
 
-    .line 735
+    .line 744
     .end local v2    # "listener":Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
     goto :goto_0
 
     :cond_4
     goto/16 :goto_4
 
-    .line 696
+    .line 705
     .end local v0    # "rate":I
     :pswitch_3
     const-string v0, "Received STOP_READY_EVT"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 697
+    .line 706
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mCameraListener:Ljava/util/concurrent/CopyOnWriteArrayList;
 
     invoke-virtual {v0}, Ljava/util/concurrent/CopyOnWriteArrayList;->iterator()Ljava/util/Iterator;
@@ -781,19 +807,19 @@
 
     check-cast v1, Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
 
-    .line 698
+    .line 707
     .local v1, "listener":Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
     invoke-interface {v1, p2}, Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;->onRecordingDisabled(I)V
 
-    .line 699
+    .line 708
     .end local v1    # "listener":Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
     goto :goto_1
 
-    .line 700
+    .line 709
     :cond_5
     goto/16 :goto_4
 
-    .line 723
+    .line 732
     :pswitch_4
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeGetVideoQualityIndication()I
 
@@ -801,7 +827,7 @@
 
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mVideoQualityLevel:I
 
-    .line 724
+    .line 733
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -824,19 +850,19 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 725
+    .line 734
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaListener:Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;
 
     if-eqz v0, :cond_a
 
-    .line 726
+    .line 735
     iget v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mVideoQualityLevel:I
 
     invoke-interface {v0, p2, v1}, Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;->onVideoQualityEvent(II)V
 
     goto/16 :goto_4
 
-    .line 680
+    .line 689
     :pswitch_5
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeGetPeerHeight()I
 
@@ -844,14 +870,14 @@
 
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mPeerHeight:I
 
-    .line 681
+    .line 690
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeGetPeerWidth()I
 
     move-result v0
 
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mPeerWidth:I
 
-    .line 682
+    .line 691
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -886,12 +912,12 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 684
+    .line 693
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaListener:Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;
 
     if-eqz v0, :cond_a
 
-    .line 685
+    .line 694
     iget v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mPeerWidth:I
 
     iget v2, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mPeerHeight:I
@@ -900,20 +926,20 @@
 
     goto/16 :goto_4
 
-    .line 702
+    .line 711
     :pswitch_6
     const-string v0, "Received DISPLAY_MODE_EVT"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 703
+    .line 712
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeGetUIOrientationMode()I
 
     move-result v0
 
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mUIOrientationMode:I
 
-    .line 704
+    .line 713
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -936,59 +962,59 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 705
+    .line 714
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaListener:Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;
 
     if-eqz v0, :cond_a
 
-    .line 706
+    .line 715
     iget v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mUIOrientationMode:I
 
     invoke-interface {v0, p2, v1}, Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;->onOrientationModeChanged(II)V
 
     goto :goto_4
 
-    .line 717
+    .line 726
     :pswitch_7
     const-string v1, "Received PLAYER_STOP_EVT"
 
     invoke-static {v1}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 718
+    .line 727
     iget-object v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaListener:Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;
 
     if-eqz v1, :cond_a
 
-    .line 719
+    .line 728
     invoke-interface {v1, p2, v0}, Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;->onPlayerStateChanged(II)V
 
     goto :goto_4
 
-    .line 710
+    .line 719
     :pswitch_8
     const-string v0, "Received PLAYER_START_EVT"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 711
+    .line 720
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaListener:Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;
 
     if-eqz v0, :cond_a
 
-    .line 712
+    .line 721
     const/4 v1, 0x0
 
     invoke-interface {v0, p2, v1}, Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;->onPlayerStateChanged(II)V
 
     goto :goto_4
 
-    .line 689
+    .line 698
     :pswitch_9
     const-string v0, "Received START_READY_EVT. Camera recording can be started"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 690
+    .line 699
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mCameraListener:Ljava/util/concurrent/CopyOnWriteArrayList;
 
     invoke-virtual {v0}, Ljava/util/concurrent/CopyOnWriteArrayList;->iterator()Ljava/util/Iterator;
@@ -1008,19 +1034,19 @@
 
     check-cast v1, Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
 
-    .line 691
+    .line 700
     .restart local v1    # "listener":Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
     invoke-interface {v1, p2}, Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;->onRecordingEnabled(I)V
 
-    .line 692
+    .line 701
     .end local v1    # "listener":Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
     goto :goto_2
 
-    .line 693
+    .line 702
     :cond_6
     goto :goto_4
 
-    .line 640
+    .line 649
     :pswitch_a
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->updatePreviewParams()Z
 
@@ -1036,17 +1062,17 @@
 
     if-nez v1, :cond_7
 
-    .line 643
+    .line 652
     const-string v1, "Received PARAM_READY_EVT and not in Screen Share modeOr AR call, Updating negotiated values"
 
     invoke-static {v1}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 645
+    .line 654
     invoke-direct {p0, p2}, Lcom/qualcomm/ims/vt/ImsMedia;->onCameraConfigChanged(I)V
 
     goto :goto_3
 
-    .line 646
+    .line 655
     :cond_7
     iget v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mScreenShareStatus:I
 
@@ -1054,29 +1080,29 @@
 
     if-ne v1, v2, :cond_8
 
-    .line 647
+    .line 656
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->initiateScreenShare()V
 
     goto :goto_3
 
-    .line 648
+    .line 657
     :cond_8
     iget v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mArStatus:I
 
     if-ne v1, v2, :cond_9
 
-    .line 649
+    .line 658
     invoke-direct {p0, v0}, Lcom/qualcomm/ims/vt/ImsMedia;->setLocalRenderingParams(Z)V
 
-    .line 651
+    .line 660
     :cond_9
     :goto_3
     iput-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mIsParamReady:Z
 
-    .line 652
+    .line 661
     nop
 
-    .line 741
+    .line 750
     :cond_a
     :goto_4
     return-void
@@ -1106,20 +1132,20 @@
 
     monitor-enter v0
 
-    .line 142
+    .line 145
     :try_start_0
     sget-object v1, Lcom/qualcomm/ims/vt/ImsMedia;->mInstance:Lcom/qualcomm/ims/vt/ImsMedia;
 
     if-nez v1, :cond_0
 
-    .line 143
+    .line 146
     new-instance v1, Lcom/qualcomm/ims/vt/ImsMedia;
 
     invoke-direct {v1}, Lcom/qualcomm/ims/vt/ImsMedia;-><init>()V
 
     sput-object v1, Lcom/qualcomm/ims/vt/ImsMedia;->mInstance:Lcom/qualcomm/ims/vt/ImsMedia;
 
-    .line 145
+    .line 148
     :cond_0
     sget-object v1, Lcom/qualcomm/ims/vt/ImsMedia;->mInstance:Lcom/qualcomm/ims/vt/ImsMedia;
     :try_end_0
@@ -1129,7 +1155,7 @@
 
     return-object v1
 
-    .line 141
+    .line 144
     :catchall_0
     move-exception v1
 
@@ -1142,15 +1168,15 @@
     .locals 3
     .param p0, "surface"    # Landroid/view/Surface;
 
-    .line 832
+    .line 841
     if-nez p0, :cond_0
 
-    .line 833
+    .line 842
     const-string v0, "surface is null"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->logw(Ljava/lang/String;)V
 
-    .line 834
+    .line 843
     new-instance v0, Landroid/util/Size;
 
     const/4 v1, 0x0
@@ -1159,7 +1185,7 @@
 
     return-object v0
 
-    .line 836
+    .line 845
     :cond_0
     new-instance v0, Landroid/util/Size;
 
@@ -1181,17 +1207,17 @@
     .param p0, "a"    # Landroid/view/Surface;
     .param p1, "b"    # Landroid/view/Surface;
 
-    .line 840
+    .line 849
     if-nez p0, :cond_0
 
     if-nez p1, :cond_0
 
-    .line 841
+    .line 850
     const/4 v0, 0x1
 
     return v0
 
-    .line 842
+    .line 851
     :cond_0
     if-eqz p0, :cond_2
 
@@ -1199,7 +1225,7 @@
 
     goto :goto_0
 
-    .line 845
+    .line 854
     :cond_1
     invoke-static {p0, p1}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeHaveSameParent(Landroid/view/Surface;Landroid/view/Surface;)Z
 
@@ -1207,7 +1233,7 @@
 
     return v0
 
-    .line 843
+    .line 852
     :cond_2
     :goto_0
     const/4 v0, 0x0
@@ -1218,7 +1244,7 @@
 .method private initializemIsMediaLoopback()V
     .locals 3
 
-    .line 285
+    .line 288
     const-string v0, "net.lte.VT_LOOPBACK_ENABLE"
 
     const/4 v1, 0x0
@@ -1227,7 +1253,7 @@
 
     move-result v0
 
-    .line 286
+    .line 289
     .local v0, "property":I
     const/4 v2, 0x1
 
@@ -1238,36 +1264,36 @@
     :cond_0
     iput-boolean v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mIsMediaLoopback:Z
 
-    .line 287
+    .line 290
     return-void
 .end method
 
 .method private initiateScreenShare()V
     .locals 2
 
-    .line 378
+    .line 381
     iget v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayWidth:I
 
     iget v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayHeight:I
 
     invoke-direct {p0, v0, v1}, Lcom/qualcomm/ims/vt/ImsMedia;->calculateSharedDisplayParams(II)V
 
-    .line 379
+    .line 382
     nop
 
-    .line 380
+    .line 383
     iget v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayWidth:I
 
     iget v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayHeight:I
 
-    .line 379
+    .line 382
     invoke-static {v0, v1}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeSetSharedDisplayParameters(II)I
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 381
+    .line 384
     const/4 v0, 0x1
 
     goto :goto_0
@@ -1278,7 +1304,7 @@
     :goto_0
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mScreenShareStatus:I
 
-    .line 382
+    .line 385
     return-void
 .end method
 
@@ -1286,12 +1312,12 @@
     .locals 1
     .param p0, "msg"    # Ljava/lang/String;
 
-    .line 884
+    .line 893
     const-string v0, "VideoCall_ImsMedia"
 
     invoke-static {v0, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 885
+    .line 894
     return-void
 .end method
 
@@ -1299,12 +1325,12 @@
     .locals 1
     .param p0, "msg"    # Ljava/lang/String;
 
-    .line 888
+    .line 897
     const-string v0, "VideoCall_ImsMedia"
 
     invoke-static {v0, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 889
+    .line 898
     return-void
 .end method
 
@@ -1312,12 +1338,12 @@
     .locals 1
     .param p0, "msg"    # Ljava/lang/String;
 
-    .line 892
+    .line 901
     const-string v0, "VideoCall_ImsMedia"
 
     invoke-static {v0, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 893
+    .line 902
     return-void
 .end method
 
@@ -1399,7 +1425,7 @@
 .method private notifyOnMediaDeinitialized()V
     .locals 5
 
-    .line 264
+    .line 267
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaStateListeners:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
@@ -1419,21 +1445,21 @@
 
     check-cast v1, Lcom/qualcomm/ims/vt/ImsMedia$MediaStateListener;
 
-    .line 266
+    .line 269
     .local v1, "listener":Lcom/qualcomm/ims/vt/ImsMedia$MediaStateListener;
     :try_start_0
     invoke-interface {v1}, Lcom/qualcomm/ims/vt/ImsMedia$MediaStateListener;->onMediaDeinitialized()V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 269
+    .line 272
     goto :goto_1
 
-    .line 267
+    .line 270
     :catch_0
     move-exception v2
 
-    .line 268
+    .line 271
     .local v2, "e":Ljava/lang/Exception;
     new-instance v3, Ljava/lang/StringBuilder;
 
@@ -1455,13 +1481,13 @@
 
     invoke-static {v3}, Lcom/qualcomm/ims/vt/ImsMedia;->loge(Ljava/lang/String;)V
 
-    .line 270
+    .line 273
     .end local v1    # "listener":Lcom/qualcomm/ims/vt/ImsMedia$MediaStateListener;
     .end local v2    # "e":Ljava/lang/Exception;
     :goto_1
     goto :goto_0
 
-    .line 271
+    .line 274
     :cond_0
     return-void
 .end method
@@ -1469,7 +1495,7 @@
 .method private notifyOnMediaInitialized()V
     .locals 5
 
-    .line 274
+    .line 277
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaStateListeners:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
@@ -1489,21 +1515,21 @@
 
     check-cast v1, Lcom/qualcomm/ims/vt/ImsMedia$MediaStateListener;
 
-    .line 276
+    .line 279
     .local v1, "listener":Lcom/qualcomm/ims/vt/ImsMedia$MediaStateListener;
     :try_start_0
     invoke-interface {v1}, Lcom/qualcomm/ims/vt/ImsMedia$MediaStateListener;->onMediaInitialized()V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 279
+    .line 282
     goto :goto_1
 
-    .line 277
+    .line 280
     :catch_0
     move-exception v2
 
-    .line 278
+    .line 281
     .local v2, "e":Ljava/lang/Exception;
     new-instance v3, Ljava/lang/StringBuilder;
 
@@ -1525,13 +1551,13 @@
 
     invoke-static {v3}, Lcom/qualcomm/ims/vt/ImsMedia;->loge(Ljava/lang/String;)V
 
-    .line 280
+    .line 283
     .end local v1    # "listener":Lcom/qualcomm/ims/vt/ImsMedia$MediaStateListener;
     .end local v2    # "e":Ljava/lang/Exception;
     :goto_1
     goto :goto_0
 
-    .line 281
+    .line 284
     :cond_0
     return-void
 .end method
@@ -1540,7 +1566,7 @@
     .locals 9
     .param p1, "mediaId"    # I
 
-    .line 744
+    .line 753
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1597,7 +1623,7 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 747
+    .line 756
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mCameraListener:Ljava/util/concurrent/CopyOnWriteArrayList;
 
     invoke-virtual {v0}, Ljava/util/concurrent/CopyOnWriteArrayList;->iterator()Ljava/util/Iterator;
@@ -1617,7 +1643,7 @@
 
     check-cast v1, Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
 
-    .line 748
+    .line 757
     .local v1, "listener":Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
     iget v4, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedWidth:I
 
@@ -1635,11 +1661,11 @@
 
     invoke-interface/range {v2 .. v8}, Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;->onCameraConfigChanged(IIIILandroid/view/Surface;I)V
 
-    .line 751
+    .line 760
     .end local v1    # "listener":Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
     goto :goto_0
 
-    .line 752
+    .line 761
     :cond_0
     iget v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mArStatus:I
 
@@ -1647,12 +1673,12 @@
 
     if-ne v0, v1, :cond_1
 
-    .line 753
+    .line 762
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaListener:Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;
 
     if-eqz v0, :cond_1
 
-    .line 754
+    .line 763
     iget-object v1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mRecordingSurface:Landroid/view/Surface;
 
     iget v2, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedWidth:I
@@ -1661,7 +1687,7 @@
 
     invoke-interface {v0, p1, v1, v2, v3}, Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;->onRecordingSurfaceChanged(ILandroid/view/Surface;II)V
 
-    .line 758
+    .line 767
     :cond_1
     return-void
 .end method
@@ -1671,7 +1697,7 @@
     .param p1, "mediaId"    # I
     .param p2, "dataUsage"    # [J
 
-    .line 792
+    .line 801
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1692,30 +1718,30 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 793
+    .line 802
     invoke-static {}, Lorg/codeaurora/telephony/utils/SomeArgs;->obtain()Lorg/codeaurora/telephony/utils/SomeArgs;
 
     move-result-object v0
 
-    .line 794
+    .line 803
     .local v0, "args":Lorg/codeaurora/telephony/utils/SomeArgs;
     iput p1, v0, Lorg/codeaurora/telephony/utils/SomeArgs;->argi1:I
 
-    .line 795
+    .line 804
     iput-object p2, v0, Lorg/codeaurora/telephony/utils/SomeArgs;->arg2:Ljava/lang/Object;
 
-    .line 796
+    .line 805
     const/16 v1, 0x8
 
     invoke-virtual {p0, v1, v0}, Lcom/qualcomm/ims/vt/ImsMedia;->obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v1
 
-    .line 797
+    .line 806
     .local v1, "msg":Landroid/os/Message;
     invoke-virtual {p0, v1}, Lcom/qualcomm/ims/vt/ImsMedia;->sendMessage(Landroid/os/Message;)Z
 
-    .line 798
+    .line 807
     return-void
 .end method
 
@@ -1723,20 +1749,20 @@
     .locals 0
     .param p1, "isSuccess"    # Z
 
-    .line 350
+    .line 353
     if-nez p1, :cond_0
 
-    .line 352
+    .line 355
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->clearMediaEventCache()V
 
-    .line 353
+    .line 356
     return-void
 
-    .line 357
+    .line 360
     :cond_0
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->scheduleCacheMediaEvents()V
 
-    .line 358
+    .line 361
     return-void
 .end method
 
@@ -1744,34 +1770,34 @@
     .locals 1
     .param p1, "instance"    # Lcom/qualcomm/ims/vt/ImsMedia;
 
-    .line 618
+    .line 627
     const-string v0, "Registering for Media Callback Events"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 619
+    .line 628
     invoke-static {p1}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeRegisterForMediaEvents(Lcom/qualcomm/ims/vt/ImsMedia;)V
 
-    .line 620
+    .line 629
     return-void
 .end method
 
 .method private scheduleCacheMediaEvents()V
     .locals 6
 
-    .line 362
+    .line 365
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mShouldCacheMediaEvents:Z
 
-    .line 364
+    .line 367
     const-string v0, "persist.vendor.radio.schd.cache"
 
-    .line 365
+    .line 368
     .local v0, "PROPERTY_SCHEDULE_MEDIA_CACHE":Ljava/lang/String;
     const/16 v1, 0x8fc
 
-    .line 368
+    .line 371
     .local v1, "MEDIA_CACHE_DELAY":I
     const/16 v2, 0x64
 
@@ -1779,7 +1805,7 @@
 
     move-result-object v2
 
-    .line 369
+    .line 372
     .local v2, "msg":Landroid/os/Message;
     const-string v3, "persist.vendor.radio.schd.cache"
 
@@ -1789,7 +1815,7 @@
 
     move-result v3
 
-    .line 370
+    .line 373
     .local v3, "delay":I
     new-instance v4, Ljava/lang/StringBuilder;
 
@@ -1811,12 +1837,12 @@
 
     invoke-static {v4}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 371
+    .line 374
     int-to-long v4, v3
 
     invoke-virtual {p0, v2, v4, v5}, Lcom/qualcomm/ims/vt/ImsMedia;->sendMessageDelayed(Landroid/os/Message;J)Z
 
-    .line 372
+    .line 375
     return-void
 .end method
 
@@ -1824,29 +1850,29 @@
     .locals 4
     .param p1, "enableAr"    # Z
 
-    .line 430
+    .line 439
     const/4 v0, 0x0
 
     const/4 v1, 0x1
 
     if-eqz p1, :cond_1
 
-    .line 431
+    .line 440
     nop
 
-    .line 432
+    .line 441
     iget v2, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedWidth:I
 
     iget v3, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedHeight:I
 
-    .line 431
+    .line 440
     invoke-static {v2, v3}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeSetLocalRenderingParameters(II)I
 
     move-result v2
 
     if-nez v2, :cond_0
 
-    .line 433
+    .line 442
     move v0, v1
 
     goto :goto_0
@@ -1859,14 +1885,14 @@
 
     goto :goto_2
 
-    .line 435
+    .line 444
     :cond_1
     nop
 
-    .line 436
+    .line 445
     nop
 
-    .line 435
+    .line 444
     const/4 v2, -0x1
 
     invoke-static {v2, v2}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeSetLocalRenderingParameters(II)I
@@ -1875,7 +1901,7 @@
 
     if-nez v2, :cond_2
 
-    .line 437
+    .line 446
     goto :goto_1
 
     :cond_2
@@ -1884,7 +1910,7 @@
     :goto_1
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mArStatus:I
 
-    .line 438
+    .line 447
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1907,7 +1933,7 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 440
+    .line 449
     :goto_2
     return-void
 .end method
@@ -1917,7 +1943,7 @@
 
     monitor-enter p0
 
-    .line 849
+    .line 858
     :try_start_0
     iget-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mIsMediaLoopback:Z
 
@@ -1925,29 +1951,29 @@
 
     if-eqz v0, :cond_0
 
-    .line 850
+    .line 859
     const/16 v0, 0x90
 
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedHeight:I
 
-    .line 851
+    .line 860
     const/16 v0, 0xb0
 
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedWidth:I
 
-    .line 852
+    .line 861
     const/16 v0, 0x14
 
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedFps:I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 853
+    .line 862
     monitor-exit p0
 
     return v1
 
-    .line 855
+    .line 864
     .end local p0    # "this":Lcom/qualcomm/ims/vt/ImsMedia;
     :cond_0
     :try_start_1
@@ -1955,31 +1981,31 @@
 
     move-result v0
 
-    .line 856
+    .line 865
     .local v0, "h":I
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeGetNegotiatedWidth()I
 
     move-result v2
 
-    .line 857
+    .line 866
     .local v2, "w":I
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeGetNegotiatedFPS()I
 
     move-result v3
 
-    .line 858
+    .line 867
     .local v3, "fps":I
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeGetUIOrientationMode()I
 
     move-result v4
 
-    .line 861
+    .line 870
     .local v4, "mode":I
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeGetRecordingSurface()Landroid/view/Surface;
 
     move-result-object v5
 
-    .line 862
+    .line 871
     .local v5, "surface":Landroid/view/Surface;
     iget v6, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedHeight:I
 
@@ -1995,7 +2021,7 @@
 
     iget-object v6, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mRecordingSurface:Landroid/view/Surface;
 
-    .line 865
+    .line 874
     invoke-static {v6, v5}, Lcom/qualcomm/ims/vt/ImsMedia;->haveSameParent(Landroid/view/Surface;Landroid/view/Surface;)Z
 
     move-result v6
@@ -2010,7 +2036,7 @@
 
     goto :goto_0
 
-    .line 874
+    .line 883
     :cond_1
     monitor-exit p0
 
@@ -2018,32 +2044,32 @@
 
     return v1
 
-    .line 867
+    .line 876
     :cond_2
     :goto_0
     :try_start_2
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedHeight:I
 
-    .line 868
+    .line 877
     iput v2, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedWidth:I
 
-    .line 869
+    .line 878
     iput v3, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedFps:I
 
-    .line 870
+    .line 879
     iput-object v5, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mRecordingSurface:Landroid/view/Surface;
 
-    .line 871
+    .line 880
     iput v4, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mUIOrientationMode:I
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
-    .line 872
+    .line 881
     monitor-exit p0
 
     return v1
 
-    .line 848
+    .line 857
     .end local v0    # "h":I
     .end local v2    # "w":I
     .end local v3    # "fps":I
@@ -2063,15 +2089,15 @@
     .locals 1
     .param p1, "listener"    # Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
 
-    .line 628
+    .line 637
     if-eqz p1, :cond_0
 
-    .line 629
+    .line 638
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mCameraListener:Ljava/util/concurrent/CopyOnWriteArrayList;
 
     invoke-virtual {v0, p1}, Ljava/util/concurrent/CopyOnWriteArrayList;->addIfAbsent(Ljava/lang/Object;)Z
 
-    .line 631
+    .line 640
     :cond_0
     return-void
 .end method
@@ -2080,15 +2106,15 @@
     .locals 1
     .param p1, "listener"    # Lcom/qualcomm/ims/vt/ImsMedia$MediaStateListener;
 
-    .line 164
+    .line 167
     if-eqz p1, :cond_0
 
-    .line 165
+    .line 168
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaStateListeners:Ljava/util/List;
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 167
+    .line 170
     :cond_0
     return-void
 .end method
@@ -2096,40 +2122,40 @@
 .method deInit()V
     .locals 1
 
-    .line 252
+    .line 255
     const-string v0, "deInit called"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 253
+    .line 256
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSurface:Landroid/view/Surface;
 
-    .line 254
+    .line 257
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->notifyOnMediaDeinitialized()V
 
-    .line 255
+    .line 258
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeDeInit()V
 
-    .line 256
+    .line 259
     const/4 v0, 0x0
 
     sput-boolean v0, Lcom/qualcomm/ims/vt/ImsMedia;->mInitCalledFlag:Z
 
-    .line 257
+    .line 260
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mScreenShareStatus:I
 
-    .line 258
+    .line 261
     iput-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mIsParamReady:Z
 
-    .line 259
+    .line 262
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mArStatus:I
 
-    .line 260
+    .line 263
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->clearMediaEventCache()V
 
-    .line 261
+    .line 264
     return-void
 .end method
 
@@ -2137,7 +2163,7 @@
     .locals 2
     .param p1, "enableAr"    # Z
 
-    .line 446
+    .line 455
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2158,33 +2184,33 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 447
+    .line 456
     if-eqz p1, :cond_0
 
-    .line 448
+    .line 457
     const/4 v0, 0x2
 
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mArStatus:I
 
-    .line 449
+    .line 458
     iget-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mIsParamReady:Z
 
     if-eqz v0, :cond_1
 
-    .line 450
+    .line 459
     const/4 v0, 0x1
 
     invoke-direct {p0, v0}, Lcom/qualcomm/ims/vt/ImsMedia;->setLocalRenderingParams(Z)V
 
     goto :goto_0
 
-    .line 453
+    .line 462
     :cond_0
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lcom/qualcomm/ims/vt/ImsMedia;->setLocalRenderingParams(Z)V
 
-    .line 455
+    .line 464
     :cond_1
     :goto_0
     return-void
@@ -2193,7 +2219,7 @@
 .method public getNegotiatedFps()I
     .locals 2
 
-    .line 530
+    .line 539
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2216,7 +2242,7 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 531
+    .line 540
     iget v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedFps:I
 
     return v0
@@ -2225,7 +2251,7 @@
 .method public getNegotiatedHeight()I
     .locals 2
 
-    .line 517
+    .line 526
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2248,7 +2274,7 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 518
+    .line 527
     iget v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedHeight:I
 
     return v0
@@ -2257,7 +2283,7 @@
 .method public getNegotiatedWidth()I
     .locals 2
 
-    .line 525
+    .line 534
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2280,7 +2306,7 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 526
+    .line 535
     iget v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mNegotiatedWidth:I
 
     return v0
@@ -2289,7 +2315,7 @@
 .method public getPeerHeight()I
     .locals 2
 
-    .line 554
+    .line 563
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2312,7 +2338,7 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 555
+    .line 564
     iget v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mPeerHeight:I
 
     return v0
@@ -2321,7 +2347,7 @@
 .method public getPeerWidth()I
     .locals 2
 
-    .line 562
+    .line 571
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2344,7 +2370,7 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 563
+    .line 572
     iget v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mPeerWidth:I
 
     return v0
@@ -2353,7 +2379,7 @@
 .method public getRecordingSurface()Landroid/view/Surface;
     .locals 2
 
-    .line 538
+    .line 547
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2376,7 +2402,7 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 539
+    .line 548
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mRecordingSurface:Landroid/view/Surface;
 
     return-object v0
@@ -2385,7 +2411,7 @@
 .method public getUIOrientationMode()I
     .locals 2
 
-    .line 546
+    .line 555
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2408,7 +2434,7 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 547
+    .line 556
     iget v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mUIOrientationMode:I
 
     return v0
@@ -2417,7 +2443,7 @@
 .method public getVideoQualityLevel()I
     .locals 2
 
-    .line 570
+    .line 579
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2440,7 +2466,7 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 571
+    .line 580
     iget v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mVideoQualityLevel:I
 
     return v0
@@ -2450,12 +2476,12 @@
     .locals 5
     .param p1, "msg"    # Landroid/os/Message;
 
-    .line 801
+    .line 810
     iget v0, p1, Landroid/os/Message;->what:I
 
     sparse-switch v0, :sswitch_data_0
 
-    .line 827
+    .line 836
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2480,37 +2506,37 @@
 
     goto :goto_0
 
-    .line 824
+    .line 833
     :sswitch_0
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->doOnCachedMediaEvent()V
 
-    .line 825
+    .line 834
     goto :goto_0
 
-    .line 811
+    .line 820
     :sswitch_1
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v0, Lorg/codeaurora/telephony/utils/SomeArgs;
 
-    .line 813
+    .line 822
     .local v0, "args2":Lorg/codeaurora/telephony/utils/SomeArgs;
     :try_start_0
     iget v1, v0, Lorg/codeaurora/telephony/utils/SomeArgs;->argi1:I
 
-    .line 814
+    .line 823
     .local v1, "mediaId":I
     iget-object v2, v0, Lorg/codeaurora/telephony/utils/SomeArgs;->arg2:Ljava/lang/Object;
 
     check-cast v2, [J
 
-    .line 815
+    .line 824
     .local v2, "dataUsage":[J
     iget-object v3, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaListener:Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;
 
     if-eqz v3, :cond_0
 
-    .line 816
+    .line 825
     new-instance v4, Lorg/codeaurora/ims/QtiVideoCallDataUsage;
 
     invoke-direct {v4, v2}, Lorg/codeaurora/ims/QtiVideoCallDataUsage;-><init>([J)V
@@ -2519,35 +2545,35 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 820
+    .line 829
     .end local v1    # "mediaId":I
     .end local v2    # "dataUsage":[J
     :cond_0
     invoke-virtual {v0}, Lorg/codeaurora/telephony/utils/SomeArgs;->recycle()V
 
-    .line 821
+    .line 830
     nop
 
-    .line 822
+    .line 831
     goto :goto_0
 
-    .line 820
+    .line 829
     :catchall_0
     move-exception v1
 
     invoke-virtual {v0}, Lorg/codeaurora/telephony/utils/SomeArgs;->recycle()V
 
-    .line 821
+    .line 830
     throw v1
 
-    .line 803
+    .line 812
     .end local v0    # "args2":Lorg/codeaurora/telephony/utils/SomeArgs;
     :sswitch_2
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v0, Lorg/codeaurora/telephony/utils/SomeArgs;
 
-    .line 805
+    .line 814
     .local v0, "args1":Lorg/codeaurora/telephony/utils/SomeArgs;
     :try_start_1
     iget v1, v0, Lorg/codeaurora/telephony/utils/SomeArgs;->argi1:I
@@ -2558,25 +2584,25 @@
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_1
 
-    .line 807
+    .line 816
     invoke-virtual {v0}, Lorg/codeaurora/telephony/utils/SomeArgs;->recycle()V
 
-    .line 808
+    .line 817
     nop
 
-    .line 809
+    .line 818
     goto :goto_0
 
-    .line 807
+    .line 816
     :catchall_1
     move-exception v1
 
     invoke-virtual {v0}, Lorg/codeaurora/telephony/utils/SomeArgs;->recycle()V
 
-    .line 808
+    .line 817
     throw v1
 
-    .line 829
+    .line 838
     .end local v0    # "args1":Lorg/codeaurora/telephony/utils/SomeArgs;
     :goto_0
     return-void
@@ -2592,19 +2618,19 @@
 .method init()I
     .locals 4
 
-    .line 221
+    .line 224
     sget-boolean v0, Lcom/qualcomm/ims/vt/ImsMedia;->mInitCalledFlag:Z
 
     const/4 v1, 0x0
 
     if-nez v0, :cond_1
 
-    .line 222
+    .line 225
     invoke-static {}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeInit()I
 
     move-result v0
 
-    .line 223
+    .line 226
     .local v0, "status":I
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -2626,54 +2652,54 @@
 
     invoke-static {v2}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 224
+    .line 227
     const/4 v2, 0x1
 
     packed-switch v0, :pswitch_data_0
 
     goto :goto_0
 
-    .line 226
+    .line 229
     :pswitch_0
     sput-boolean v2, Lcom/qualcomm/ims/vt/ImsMedia;->mInitCalledFlag:Z
 
-    .line 227
-    invoke-direct {p0, p0}, Lcom/qualcomm/ims/vt/ImsMedia;->registerForMediaEvents(Lcom/qualcomm/ims/vt/ImsMedia;)V
-
-    .line 228
-    goto :goto_0
-
     .line 230
-    :pswitch_1
-    sput-boolean v1, Lcom/qualcomm/ims/vt/ImsMedia;->mInitCalledFlag:Z
+    invoke-direct {p0, p0}, Lcom/qualcomm/ims/vt/ImsMedia;->registerForMediaEvents(Lcom/qualcomm/ims/vt/ImsMedia;)V
 
     .line 231
     goto :goto_0
 
     .line 233
+    :pswitch_1
+    sput-boolean v1, Lcom/qualcomm/ims/vt/ImsMedia;->mInitCalledFlag:Z
+
+    .line 234
+    goto :goto_0
+
+    .line 236
     :pswitch_2
     sput-boolean v2, Lcom/qualcomm/ims/vt/ImsMedia;->mInitCalledFlag:Z
 
-    .line 234
+    .line 237
     const-string v1, "Dpl init is called multiple times"
 
     invoke-static {v1}, Lcom/qualcomm/ims/vt/ImsMedia;->loge(Ljava/lang/String;)V
 
-    .line 235
+    .line 238
     const/4 v0, 0x0
 
-    .line 238
+    .line 241
     :goto_0
     if-nez v0, :cond_0
 
-    .line 239
+    .line 242
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->notifyOnMediaInitialized()V
 
-    .line 241
+    .line 244
     :cond_0
     return v0
 
-    .line 245
+    .line 248
     .end local v0    # "status":I
     :cond_1
     return v1
@@ -2689,7 +2715,7 @@
 .method public isArEnabled()Z
     .locals 2
 
-    .line 470
+    .line 479
     iget v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mArStatus:I
 
     const/4 v1, 0x1
@@ -2708,7 +2734,7 @@
 .method isMediaInitialized()Z
     .locals 1
 
-    .line 880
+    .line 889
     sget-boolean v0, Lcom/qualcomm/ims/vt/ImsMedia;->mInitCalledFlag:Z
 
     return v0
@@ -2718,27 +2744,27 @@
     .locals 1
     .param p1, "isMultiParty"    # Z
 
-    .line 340
+    .line 343
     if-nez p1, :cond_0
 
-    .line 341
+    .line 344
     return-void
 
-    .line 344
+    .line 347
     :cond_0
     monitor-enter p0
 
-    .line 345
+    .line 348
     :try_start_0
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->scheduleCacheMediaEvents()V
 
-    .line 346
+    .line 349
     monitor-exit p0
 
-    .line 347
+    .line 350
     return-void
 
-    .line 346
+    .line 349
     :catchall_0
     move-exception v0
 
@@ -2754,10 +2780,10 @@
     .param p1, "confState"    # Lorg/codeaurora/ims/ImsConferenceController$ConferenceState;
     .param p2, "isSuccess"    # Z
 
-    .line 321
+    .line 324
     monitor-enter p0
 
-    .line 322
+    .line 325
     :try_start_0
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -2789,7 +2815,7 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 325
+    .line 328
     sget-object v0, Lcom/qualcomm/ims/vt/ImsMedia$1;->$SwitchMap$org$codeaurora$ims$ImsConferenceController$ConferenceState:[I
 
     invoke-virtual {p1}, Lorg/codeaurora/ims/ImsConferenceController$ConferenceState;->ordinal()I
@@ -2800,36 +2826,36 @@
 
     packed-switch v0, :pswitch_data_0
 
-    .line 333
+    .line 336
     monitor-exit p0
 
     goto :goto_0
 
-    .line 330
+    .line 333
     :pswitch_0
     invoke-direct {p0, p2}, Lcom/qualcomm/ims/vt/ImsMedia;->processConferenceStateCompleted(Z)V
+
+    .line 334
+    monitor-exit p0
+
+    return-void
+
+    .line 330
+    :pswitch_1
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mShouldCacheMediaEvents:Z
 
     .line 331
     monitor-exit p0
 
     return-void
 
-    .line 327
-    :pswitch_1
-    const/4 v0, 0x1
-
-    iput-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mShouldCacheMediaEvents:Z
-
-    .line 328
-    monitor-exit p0
-
-    return-void
-
-    .line 333
+    .line 336
     :goto_0
     return-void
 
-    .line 335
+    .line 338
     :catchall_0
     move-exception v0
 
@@ -2851,7 +2877,7 @@
     .param p1, "eventId"    # I
     .param p2, "mediaId"    # I
 
-    .line 764
+    .line 773
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2894,24 +2920,24 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 766
+    .line 775
     sget-boolean v0, Lcom/qualcomm/ims/vt/ImsMedia;->mInitCalledFlag:Z
 
     if-nez v0, :cond_0
 
-    .line 767
+    .line 776
     const-string v0, "VT lib deinitialized. Do not cache events"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->logw(Ljava/lang/String;)V
 
-    .line 768
+    .line 777
     return-void
 
-    .line 770
+    .line 779
     :cond_0
     monitor-enter p0
 
-    .line 772
+    .line 781
     :try_start_0
     iget-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mShouldCacheMediaEvents:Z
 
@@ -2925,7 +2951,7 @@
 
     if-eq p1, v0, :cond_1
 
-    .line 775
+    .line 784
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mCachedMediaEvents:Ljava/util/List;
 
     new-instance v1, Landroid/util/Pair;
@@ -2944,40 +2970,40 @@
 
     goto :goto_0
 
-    .line 777
+    .line 786
     :cond_1
     invoke-static {}, Lorg/codeaurora/telephony/utils/SomeArgs;->obtain()Lorg/codeaurora/telephony/utils/SomeArgs;
 
     move-result-object v0
 
-    .line 778
+    .line 787
     .local v0, "args":Lorg/codeaurora/telephony/utils/SomeArgs;
     iput p1, v0, Lorg/codeaurora/telephony/utils/SomeArgs;->argi1:I
 
-    .line 779
+    .line 788
     iput p2, v0, Lorg/codeaurora/telephony/utils/SomeArgs;->argi2:I
 
-    .line 780
+    .line 789
     const/4 v1, 0x0
 
     invoke-virtual {p0, v1, v0}, Lcom/qualcomm/ims/vt/ImsMedia;->obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v1
 
-    .line 781
+    .line 790
     .local v1, "msg":Landroid/os/Message;
     invoke-virtual {p0, v1}, Lcom/qualcomm/ims/vt/ImsMedia;->sendMessage(Landroid/os/Message;)Z
 
-    .line 783
+    .line 792
     .end local v0    # "args":Lorg/codeaurora/telephony/utils/SomeArgs;
     .end local v1    # "msg":Landroid/os/Message;
     :goto_0
     monitor-exit p0
 
-    .line 784
+    .line 793
     return-void
 
-    .line 783
+    .line 792
     :catchall_0
     move-exception v0
 
@@ -2992,12 +3018,12 @@
     .locals 1
     .param p1, "listener"    # Lcom/qualcomm/ims/vt/ImsMedia$CameraListener;
 
-    .line 634
+    .line 643
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mCameraListener:Ljava/util/concurrent/CopyOnWriteArrayList;
 
     invoke-virtual {v0, p1}, Ljava/util/concurrent/CopyOnWriteArrayList;->remove(Ljava/lang/Object;)Z
 
-    .line 635
+    .line 644
     return-void
 .end method
 
@@ -3005,12 +3031,12 @@
     .locals 1
     .param p1, "listener"    # Lcom/qualcomm/ims/vt/ImsMedia$MediaStateListener;
 
-    .line 173
+    .line 176
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaStateListeners:Ljava/util/List;
 
     invoke-interface {v0, p1}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
 
-    .line 174
+    .line 177
     return-void
 .end method
 
@@ -3018,17 +3044,17 @@
     .locals 3
     .param p1, "mediaId"    # I
 
-    .line 578
+    .line 587
     const-string v0, "requestCallDataUsage"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 579
+    .line 588
     invoke-static {p1}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeRequestRtpDataUsage(I)I
 
     move-result v0
 
-    .line 580
+    .line 589
     .local v0, "status":I
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -3050,7 +3076,7 @@
 
     invoke-static {v1}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 581
+    .line 590
     return-void
 .end method
 
@@ -3058,7 +3084,7 @@
     .locals 2
     .param p1, "orientation"    # I
 
-    .line 290
+    .line 293
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -3079,10 +3105,10 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 291
+    .line 294
     invoke-static {p1}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeSetDeviceOrientation(I)V
 
-    .line 292
+    .line 295
     return-void
 .end method
 
@@ -3090,21 +3116,21 @@
     .locals 3
     .param p1, "isFacingFront"    # Z
 
-    .line 477
+    .line 486
     if-eqz p1, :cond_0
 
     const/4 v0, 0x1
 
     goto :goto_0
 
-    .line 478
+    .line 487
     :cond_0
     const/4 v0, 0x0
 
     :goto_0
     nop
 
-    .line 479
+    .line 488
     .local v0, "facing":I
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -3126,10 +3152,10 @@
 
     invoke-static {v1}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 480
+    .line 489
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeSetCameraFacing(I)V
 
-    .line 481
+    .line 490
     return-void
 .end method
 
@@ -3138,7 +3164,7 @@
     .param p1, "facing"    # I
     .param p2, "mount"    # I
 
-    .line 487
+    .line 496
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -3169,10 +3195,10 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 488
+    .line 497
     invoke-static {p1, p2}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeSetCameraInfo(II)V
 
-    .line 489
+    .line 498
     return-void
 .end method
 
@@ -3180,7 +3206,7 @@
     .locals 2
     .param p1, "delay"    # I
 
-    .line 462
+    .line 471
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -3201,10 +3227,10 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 463
+    .line 472
     invoke-static {p1}, Lcom/qualcomm/ims/vt/ImsMedia;->nativesetLocalRenderingDelay(I)I
 
-    .line 464
+    .line 473
     return-void
 .end method
 
@@ -3212,15 +3238,15 @@
     .locals 1
     .param p1, "listener"    # Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;
 
-    .line 623
+    .line 632
     const-string v0, "Registering for Media Listener"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 624
+    .line 633
     iput-object p1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mMediaListener:Lcom/qualcomm/ims/vt/ImsMedia$IMediaListener;
 
-    .line 625
+    .line 634
     return-void
 .end method
 
@@ -3228,22 +3254,22 @@
     .locals 12
     .param p1, "bitmap"    # Landroid/graphics/Bitmap;
 
-    .line 585
+    .line 594
     sget-boolean v0, Lcom/qualcomm/ims/vt/ImsMedia;->mInitCalledFlag:Z
 
     const/4 v1, 0x0
 
     if-nez v0, :cond_0
 
-    .line 586
+    .line 595
     const-string v0, "setPreviewImage: VT lib deinitialized so ignore"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 587
+    .line 596
     return v1
 
-    .line 590
+    .line 599
     :cond_0
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -3265,10 +3291,10 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 593
+    .line 602
     if-nez p1, :cond_1
 
-    .line 594
+    .line 603
     const/4 v0, 0x0
 
     const/4 v2, -0x1
@@ -3280,20 +3306,20 @@
     .local v0, "status":I
     goto :goto_0
 
-    .line 596
+    .line 605
     .end local v0    # "status":I
     :cond_1
     invoke-virtual {p1}, Landroid/graphics/Bitmap;->getHeight()I
 
     move-result v0
 
-    .line 597
+    .line 606
     .local v0, "height":I
     invoke-virtual {p1}, Landroid/graphics/Bitmap;->getWidth()I
 
     move-result v10
 
-    .line 598
+    .line 607
     .local v10, "width":I
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -3325,12 +3351,12 @@
 
     invoke-static {v2}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 600
+    .line 609
     mul-int v2, v10, v0
 
     new-array v11, v2, [I
 
-    .line 602
+    .line 611
     .local v11, "argb":[I
     const/4 v4, 0x0
 
@@ -3350,14 +3376,14 @@
 
     invoke-virtual/range {v2 .. v9}, Landroid/graphics/Bitmap;->getPixels([IIIIIII)V
 
-    .line 603
+    .line 612
     invoke-static {v11, v10, v0}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeSetVideoImageBuffer([III)I
 
     move-result v2
 
     move v0, v2
 
-    .line 610
+    .line 619
     .end local v10    # "width":I
     .end local v11    # "argb":[I
     .local v0, "status":I
@@ -3382,7 +3408,7 @@
 
     invoke-static {v2}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 611
+    .line 620
     if-nez v0, :cond_2
 
     const/4 v1, 0x1
@@ -3396,7 +3422,7 @@
     .param p1, "width"    # I
     .param p2, "height"    # I
 
-    .line 389
+    .line 392
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -3427,26 +3453,26 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 391
+    .line 394
     iput p1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayWidth:I
 
-    .line 392
+    .line 395
     iput p2, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSharedDisplayHeight:I
 
-    .line 393
+    .line 396
     const/4 v0, 0x2
 
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mScreenShareStatus:I
 
-    .line 394
+    .line 397
     iget-boolean v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mIsParamReady:Z
 
     if-eqz v0, :cond_0
 
-    .line 395
+    .line 398
     invoke-direct {p0}, Lcom/qualcomm/ims/vt/ImsMedia;->initiateScreenShare()V
 
-    .line 397
+    .line 400
     :cond_0
     return-void
 .end method
@@ -3455,7 +3481,7 @@
     .locals 2
     .param p1, "st"    # Landroid/view/Surface;
 
-    .line 497
+    .line 506
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -3488,20 +3514,20 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 498
+    .line 507
     sget-boolean v0, Lcom/qualcomm/ims/vt/ImsMedia;->mInitCalledFlag:Z
 
     if-nez v0, :cond_0
 
-    .line 499
+    .line 508
     const-string v0, "setSurface: init not completed. ignore!"
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 500
+    .line 509
     return-void
 
-    .line 504
+    .line 513
     :cond_0
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSurface:Landroid/view/Surface;
 
@@ -3511,26 +3537,26 @@
 
     if-nez v0, :cond_2
 
-    .line 505
+    .line 514
     iget-object v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSurface:Landroid/view/Surface;
 
     if-eqz v0, :cond_1
 
     if-eqz p1, :cond_1
 
-    .line 506
+    .line 515
     const/4 v0, 0x0
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeSetSurface(Landroid/view/Surface;)I
 
-    .line 508
+    .line 517
     :cond_1
     iput-object p1, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mSurface:Landroid/view/Surface;
 
-    .line 509
+    .line 518
     invoke-static {p1}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeSetSurface(Landroid/view/Surface;)I
 
-    .line 511
+    .line 520
     :cond_2
     return-void
 .end method
@@ -3538,7 +3564,7 @@
 .method public stopScreenShare()V
     .locals 2
 
-    .line 405
+    .line 408
     const/4 v0, -0x1
 
     invoke-static {v0, v0}, Lcom/qualcomm/ims/vt/ImsMedia;->nativeSetSharedDisplayParameters(II)I
@@ -3547,7 +3573,7 @@
 
     if-nez v0, :cond_0
 
-    .line 406
+    .line 409
     const/4 v0, 0x0
 
     goto :goto_0
@@ -3558,7 +3584,7 @@
     :goto_0
     iput v0, p0, Lcom/qualcomm/ims/vt/ImsMedia;->mScreenShareStatus:I
 
-    .line 407
+    .line 410
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -3581,6 +3607,6 @@
 
     invoke-static {v0}, Lcom/qualcomm/ims/vt/ImsMedia;->log(Ljava/lang/String;)V
 
-    .line 408
+    .line 411
     return-void
 .end method
