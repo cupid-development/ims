@@ -1,13 +1,13 @@
 Signature-Version: 1.0
 Created-By: 1.0 (Android SignApk)
-SHA-256-Digest-Manifest: TvZLLh0y6i2alZN49e5tHR3DCby3NLzAJgxSN5BTpVQ=
+SHA-256-Digest-Manifest: PbfiTeroAIpxfLWcFXwxdE5WECMSC3cFROOAU0R7N3Q=
 X-Android-APK-Signed: 2, 3
 
 Name: AndroidManifest.xml
 SHA-256-Digest: tNfjOYvlScvLSgf6sAfGAToFHelbStzilZ0X/O3ns4o=
 
 Name: classes.dex
-SHA-256-Digest: qFJjYWpxscZWDPk9lWUGJMfMUK9OX01LXpIee8UE9sw=
+SHA-256-Digest: n0z0i/pPdiMVyaDS2fYXATL2hEA+HXM7ExF3TIIrwOI=
 
 Name: res/drawable-hdpi-v4/img_no_image.png
 SHA-256-Digest: XblUFZvNd8BFsD5hSnPgLaYu9msgdFyc5gHJSfMxbQY=
